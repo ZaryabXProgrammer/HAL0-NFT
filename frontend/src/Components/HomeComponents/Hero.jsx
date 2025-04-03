@@ -29,13 +29,13 @@ function Hero() {
           animate="animate"
           variants={fadeIn}
         >
-          <h2 className="text-6xl leading-[1.3] font-bold text-white mb-6">
-            Discover, Sell<br />and Buy World<br />Best NFTs!
+          <h2 className="text-5xl leading-[1.3] font-bold text-white mb-6">
+            Join Master Chief<br />and the Covenant<br />in the Fight for Humanity!
           </h2>
           <p className="text-gray-300 text-lg mb-8">
-            Create, collect, and trade unique NFTs effortlessly. Explore
-            rare digital assets, support creators, and own exclusive
-            collectibles on the blockchain.
+            Discover epic battles, iconic weapons, and legendary heroes from the Halo 2 universe.
+            Explore the stories of Master Chief, the Covenant, and the Flood, and immerse yourself in
+            the ultimate sci-fi adventure.
           </p>
           <div className="flex space-x-4">
             <motion.button
@@ -43,16 +43,17 @@ function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Explore
+              Explore Halo 2
             </motion.button>
             <motion.button
               className="border-2 border-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-purple-600/10 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Create
+              Create Your Legend
             </motion.button>
           </div>
+
 
           {/* Stats */}
           <div className="flex space-x-12 mt-12">
@@ -79,11 +80,11 @@ function Hero() {
           transition={{ duration: 0.8 }}
         >
           <img
-            src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+            src="https://f8n-ipfs-production.imgix.net/QmckiDhA8j8WhdV15MqRctQq4Li95knwTbPwPYa6aSwTXy/nft.jpg"
             alt="Featured NFT"
-            className="w-96 h-96 object-cover rounded-3xl"
+            className="w-[550px] h-[550px] object-cover rounded-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent rounded-3xl" />
+       
         </motion.div>
       </aside>
     </section>

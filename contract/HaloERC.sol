@@ -12,10 +12,10 @@ contract Halo is ERC721Enumerable, Ownable, ReentrancyGuard {
 
     uint256 public constant mintPrice = 0.001 ether;
     uint256 public constant maxMintSupply = 100;
-    uint256 public constant refundPeriod = 10 minutes; // Time limit for refunds
+    uint256 public constant refundPeriod = 10 minutes; 
 
-    mapping(uint256 => uint256) public refundEndTimestamps; // Refund deadline for each token
-    mapping(uint256 => bool) public hasRefunded; // Tracks if a token was refunded
+    mapping(uint256 => uint256) public refundEndTimestamps; 
+    mapping(uint256 => bool) public hasRefunded; 
     uint256 private latestRefundDeadline;
 
     event NFTMinted(address indexed minter, uint256 tokenId);
@@ -31,7 +31,7 @@ contract Halo is ERC721Enumerable, Ownable, ReentrancyGuard {
         return "ipfs://bafybeicyheumtconolj4c6jdlmuh5efyppqzl34vy7iok3mpelbc2ajqeu/";
     }
 
-    /// @notice Mint a specific NFT if it's available.
+  
     function mint(uint256 tokenId) external payable {
         require(msg.value >= mintPrice, "Not enough ETH sent");
         require(totalSupply() < maxMintSupply, "Max supply reached");
@@ -40,7 +40,7 @@ contract Halo is ERC721Enumerable, Ownable, ReentrancyGuard {
         _safeMint(msg.sender, tokenId);
         refundEndTimestamps[tokenId] = block.timestamp + refundPeriod;
 
-        // ✅ Track the latest refund timestamp
+       
         if (refundEndTimestamps[tokenId] > latestRefundDeadline) {
             latestRefundDeadline = refundEndTimestamps[tokenId];
         }
@@ -56,7 +56,7 @@ contract Halo is ERC721Enumerable, Ownable, ReentrancyGuard {
             "Refund period expired"
         );
 
-        uint256 refundAmount = (mintPrice * 95) / 100; // 95% refund (5% fee)
+        uint256 refundAmount = (mintPrice * 95) / 100; 
         hasRefunded[tokenId] = true;
 
         _transfer(msg.sender, address(this), tokenId);
@@ -65,7 +65,7 @@ contract Halo is ERC721Enumerable, Ownable, ReentrancyGuard {
         emit NFTRefunded(msg.sender, tokenId, refundAmount);
     }
 
-    /// @notice Withdraw contract balance after refund period ends.
+  
     function withdraw() external onlyOwner {
         require(
             block.timestamp > getLatestRefundDeadline(),
@@ -82,11 +82,11 @@ contract Halo is ERC721Enumerable, Ownable, ReentrancyGuard {
     }
 
     function isTokenMinted(uint256 tokenId) public view returns (bool) {
-        // ✅ Use try-catch to handle the revert case when token is not minted
+      
         try this.ownerOf(tokenId) returns (address) {
-            return true; // Token exists and is already minted
+            return true;
         } catch {
-            return false; // Token does not exist, meaning it's not minted
+            return false; 
         }
     }
 
